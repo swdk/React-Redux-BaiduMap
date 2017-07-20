@@ -16,7 +16,7 @@ class BDMap extends Component {
           this._map = new BMap.Map('map');
           var point = new BMap.Point(this.props.coords[0].lng,this.props.coords[0].lat)
               console.log(point);
-          this._maBp.centerAndZoom(point, 17); // 初始化地图，设置中心点坐标和地图级别
+          this._map.centerAndZoom(point, 17); // 初始化地图，设置中心点坐标和地图级别
           this._map.addControl(new BMap.NavigationControl());
           this._map.addControl(new BMap.ScaleControl());
           this._map.addControl(new BMap.OverviewMapControl());
@@ -73,7 +73,7 @@ class BDMap extends Component {
 function mapStateToProps(state) {
     return {
     //    users: state.users,
-        oords :state.coords
+        coords :state.coords
     };
 }
 

@@ -1,0 +1,30 @@
+#search-bar {
+    margin: 20px;
+}
+
+#root {
+    position: relative;
+    display: table;
+    overflow: hidden;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#map {
+    margin: 20px;
+    height: 600px;
+    width: 800px;
+    float: left;
+}
+
+#coords-table {
+    margin: 20px;
+    float: left;
+    display: block;
+    max-height: 600px;
+    overflow: auto;
+}
+
+h1 {
+    text-align: center;
+}

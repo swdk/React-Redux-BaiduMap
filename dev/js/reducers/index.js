@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 //import UserReducer from './reducer-users';
-import CoordsReducerInit from './reduce-coords-init';
+import CoordsReducerInit from './reducer-coords-init';
 import CoordsReducer from './reducer-coords';
 /*
  * We combine all reducers into a single object before updated data is dispatched (sent) to store
