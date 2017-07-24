@@ -1,34 +1,19 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {selectUser} from '../actions/index'
+import {selectPoint} from '../actions/index'
 
 
 class CoordList extends Component {
 
-    renderList() {
-
-      return this.props.coords.map((coord) => {
-          return (
-              <li
-                  key="1"
-                  onClick={() => this.props.selectUser(coord)}
-              >
-                  {coord.lat} {coord.lng}
-              </li>
-          );
-      });
-
-
-
-      console.log(this.props.coords);
-
-    }
 
     render() {
         return (
             <ul>
-                {this.renderList()}
+            <li>
+            {this.props.coords.lat} {this.props.coords.lng}
+
+            </li>
             </ul>
         );
     }
@@ -40,14 +25,16 @@ class CoordList extends Component {
 function mapStateToProps(state) {
     return {
       //  users: state.users,
-        coords :state.coords
+        coords :state.coords,
+      serachedtextfromstate: state.serachedtextfromstate
+
     };
 }
 
 // Get actions and pass them as props to to UserList
 //      > now UserList has this.props.selectUser
 function matchDispatchToProps(dispatch){
-    return bindActionCreators({selectUser: selectUser}, dispatch);
+    return bindActionCreators({selectPoint: selectPoint}, dispatch);
 }
 
 // We don't want to return the plain UserList (component) anymore, we want to return the smart Container

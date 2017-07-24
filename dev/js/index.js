@@ -8,12 +8,27 @@ import promise from 'redux-promise';
 import createLogger from 'redux-logger';
 import allReducers from './reducers';
 import App from './components/App';
+import Point from './containers/point';
 
 const logger = createLogger();
+
+var ipoint = new Point(116.404,39.915);
+//sconsole.log (ipoint);
+
 const store = createStore(
     allReducers,
-    applyMiddleware(thunk, promise, logger)
+  //  { CoordsReducerInit:  new Point(116.404,39.915) }
+  //  applyMiddleware(thunk, promise, logger)
 );
+store.dispatch({
+  type: 'INIT_MAP',
+  payload: new BMap.Point(116.404,39.915)
+})
+
+store.dispatch({
+  type: 'INIT_SEARCH',
+  payload: 'HONG KONG'
+})
 
 ReactDOM.render(
     <Provider store={store}>
