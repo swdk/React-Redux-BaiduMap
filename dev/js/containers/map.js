@@ -70,6 +70,7 @@ class BDMap extends Component {
           //  this.setState({ serachedtextfromstate: evt.target.value });
             //  console.log();
             this._local.search(evt.target.value);
+    
         }
 
     render(){
