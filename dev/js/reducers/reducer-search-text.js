@@ -6,7 +6,7 @@ export default function (state={},action){
    return action.payload;
 
  }else if(action.type ==='INIT_SEARCH'){
-
+    //initalse search
      console.log("initialised search");
      return action.payload;
 

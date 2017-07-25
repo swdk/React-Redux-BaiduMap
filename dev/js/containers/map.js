@@ -8,17 +8,12 @@ import { Button, FormControl, ControlLabel, Form, FormGroup } from 'react-bootst
 
 class BDMap extends Component {
 
-
-
-
+//react components
   componentDidMount() {
-
-
-  console.log("hi");
-    console.log("what",this.props.serachedtextfromstate);
+              //initilase map
             this._map = new BMap.Map('map');
          var point = new BMap.Point(this.props.coords.lng,this.props.coords.lat)
-                 console.log(point);
+              //   console.log(point);
             this._map.centerAndZoom(point, 17); // 初始化地图，设置中心点坐标和地图级别
             this._map.addControl(new BMap.NavigationControl());
             this._map.addControl(new BMap.ScaleControl());
@@ -26,18 +21,20 @@ class BDMap extends Component {
             this._map.addControl(new BMap.MapTypeControl());
             this._map.setCurrentCity('北京'); // 仅当设置城市信息时，MapTypeControl的切换功能才能可用
 
+            //add marker to Map
             var marker = new BMap.Marker(point);
             this._map.addOverlay(marker);
             marker.enableDragging();
-
             marker.addEventListener('dragend', function(e) {
-              //  this.addMarker(e.point);
+              //calling redux action here
               this.props.selectPoint(e.point);
-              //  this.props.selectPoint(marker.point);
     						console.log("draged to");
     						console.log(marker.point);
     						this._map.panTo(e.point);
             }.bind(this));
+
+
+            //serach option for map
             var options = {
                 renderOptions: {
                 //   map: this._map,
@@ -45,7 +42,6 @@ class BDMap extends Component {
 
                 },
                 pageCapacity: 1,
-
                 onMarkersSet: false,
                 onSearchComplete: function(results) {
                     if (this._local.getStatus() == BMAP_STATUS_SUCCESS) {
@@ -53,7 +49,7 @@ class BDMap extends Component {
                             var firstPoi = results.getPoi(0).point;
                             var markerAnchor = new BMap.Point(firstPoi.lng, firstPoi.lat);
                             marker.setPosition(markerAnchor);
-                          //  console.log("searched to",searchText);
+                          //  console.log("searched ",searchText);
                             console.log(marker.point);
                             this._map.panTo(marker.point);
                             this.props.selectPoint(marker.point);
@@ -62,21 +58,18 @@ class BDMap extends Component {
                 }.bind(this)
             };
         this._local = new BMap.LocalSearch(this._map, options);
-
         }
 
-        _handleChange(evt) {
 
-          //  this.setState({ serachedtextfromstate: evt.target.value });
-            //  console.log();
+        //custom function to connect with baidumap serach component
+        _handleChange(evt) {
             this._local.search(evt.target.value);
-    
         }
 
     render(){
+            //form controlling the map
         return (
           <div>
-
             <Form inline>
                   <FormGroup controlId="formInlineName" width={'100%'}>
                       <ControlLabel>输入省、直辖市或县名称：</ControlLabel>
@@ -84,30 +77,23 @@ class BDMap extends Component {
                       <FormControl type="text"  value={this.props.searchedtextfromstate} placeholder="北京" onChange={this._handleChange.bind(this)}/>
                   </FormGroup>
                   {' '}
-
               </Form>
                 <div id = 'map' />
             < /div>
 
         );
     }
-
-
-
 }
 
 
-
+//getting redux state to this.props
 function mapStateToProps(state) {
     return {
-    //    users: state.users,
         coords :state.coords,
-      //  serachedtextfromstate :state.serachedtextfromstate
     };
 }
 
-//Get actions and pass them as props to to UserList
-    // > now UserList has this.props.selectUser
+//binding select point function to actions
 function matchDispatchToProps(dispatch){
     return bindActionCreators({selectPoint: selectPoint}, dispatch);
 }

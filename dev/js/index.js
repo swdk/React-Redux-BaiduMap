@@ -12,14 +12,15 @@ import Point from './containers/point';
 
 const logger = createLogger();
 
-var ipoint = new Point(116.404,39.915);
-//sconsole.log (ipoint);
 
+
+//creating store to store states
 const store = createStore(
     allReducers,
-  //  { CoordsReducerInit:  new Point(116.404,39.915) }
-  //  applyMiddleware(thunk, promise, logger)
 );
+
+//initial point and searhc
+var ipoint = new Point(116.404,39.915);
 store.dispatch({
   type: 'INIT_MAP',
   payload: new BMap.Point(116.404,39.915)

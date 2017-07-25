@@ -8,10 +8,7 @@ const App = () => (
     <div>
         <h2>Hello World</h2>
         <CoordList />
-
-
-             <BDMap />
-        <hr />
+      <BDMap />
     </div>
 );
 

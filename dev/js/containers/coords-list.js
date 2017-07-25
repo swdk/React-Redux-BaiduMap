@@ -6,13 +6,12 @@ import {selectPoint} from '../actions/index'
 
 class CoordList extends Component {
 
-
+  //displaying the lat and lng of the components
     render() {
         return (
             <ul>
             <li>
             {this.props.coords.lat} {this.props.coords.lng}
-
             </li>
             </ul>
         );
@@ -20,8 +19,7 @@ class CoordList extends Component {
 
 }
 
-// Get apps state and pass it as props to UserList
-//      > whenever state changes, the UserList will automatically re-render
+//getting redux state to this.props
 function mapStateToProps(state) {
     return {
       //  users: state.users,
@@ -31,12 +29,10 @@ function mapStateToProps(state) {
     };
 }
 
-// Get actions and pass them as props to to UserList
-//      > now UserList has this.props.selectUser
+//binding select point function to actions
 function matchDispatchToProps(dispatch){
     return bindActionCreators({selectPoint: selectPoint}, dispatch);
 }
 
-// We don't want to return the plain UserList (component) anymore, we want to return the smart Container
-//      > UserList is now aware of state and actions
+
 export default connect(mapStateToProps, matchDispatchToProps)(CoordList);
