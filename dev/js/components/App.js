@@ -6,7 +6,8 @@ require('../../scss/style.scss');
 
 const App = () => (
     <div>
-        <h2>Hello World</h2>
+        <h2>React Redux Baidu Map</h2>
+        <h3>https://github.com/swdk/React-Redux-BaiduMap</h3>
         <CoordList />
       <BDMap />
     </div>
