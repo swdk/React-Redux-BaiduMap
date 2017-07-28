@@ -25,3 +25,8 @@ Start the development server (changes will now update live in browser)
 
 To view your project, go to: [http://localhost:3000/](http://localhost:3000/)
 
+## Drag your Marker, lat and Lng will be displayed
+![Screenshot](demo2.png)
+
+## Real Time Search on Map
+![Screenshot](demo1.png)
