@@ -63,7 +63,9 @@ class BDMap extends Component {
 
         //custom function to connect with baidumap serach component
         _handleChange(evt) {
+
             this._local.search(evt.target.value);
+
         }
 
     render(){
@@ -74,7 +76,7 @@ class BDMap extends Component {
                   <FormGroup controlId="formInlineName" width={'100%'}>
                       <ControlLabel>输入省、直辖市或县名称：</ControlLabel>
                       {' '}
-                      <FormControl type="text"  value={this.props.searchedtextfromstate} placeholder="北京" onChange={this._handleChange.bind(this)}/>
+                      <FormControl type="text"   placeholder="北京" onChange={this._handleChange.bind(this)}/>
                   </FormGroup>
                   {' '}
               </Form>
@@ -95,7 +97,7 @@ function mapStateToProps(state) {
 
 //binding select point function to actions
 function matchDispatchToProps(dispatch){
-    return bindActionCreators({selectPoint: selectPoint}, dispatch);
+return bindActionCreators({selectPoint: selectPoint}, dispatch);
 }
 
 

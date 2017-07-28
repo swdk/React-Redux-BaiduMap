@@ -1,12 +1,5 @@
 
-export const Search = (searchText) => {
-    console.log("You Searched at action ", searchText);
-    return {
-        type: 'SEARCHED',
-        payload: searchText
-    }
-};
-
+//handle marker dragging action
 export const selectPoint = (coords) => {
     console.log("You clicked on coords: ", coords.lat);
     return {

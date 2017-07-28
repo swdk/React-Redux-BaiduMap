@@ -26,11 +26,8 @@ store.dispatch({
   payload: new BMap.Point(116.404,39.915)
 })
 
-store.dispatch({
-  type: 'INIT_SEARCH',
-  payload: 'HONG KONG'
-})
 
+//searchedtextfromstate
 ReactDOM.render(
     <Provider store={store}>
         <App />

@@ -1,11 +1,10 @@
 import {combineReducers} from 'redux';
 import CoordsReducerInit from './reducer-coords-init';
-import SearchReducer from './reducer-search-text';
 
 
+//combing all other reducer
 const allReducers = combineReducers({
     coords: CoordsReducerInit,
-    serachedtextfromstate : SearchReducer
 });
 
 

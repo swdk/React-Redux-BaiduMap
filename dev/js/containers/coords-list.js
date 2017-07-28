@@ -22,10 +22,7 @@ class CoordList extends Component {
 //getting redux state to this.props
 function mapStateToProps(state) {
     return {
-      //  users: state.users,
         coords :state.coords,
-      serachedtextfromstate: state.serachedtextfromstate
-
     };
 }
 
