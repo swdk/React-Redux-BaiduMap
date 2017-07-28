@@ -8,29 +8,31 @@ import { Button, FormControl, ControlLabel, Form, FormGroup } from 'react-bootst
 
 class BDMap extends Component {
 
-//react components
+//react components, we use customer function _handleChange() to control the search
   componentDidMount() {
               //initilase map
             this._map = new BMap.Map('map');
          var point = new BMap.Point(this.props.coords.lng,this.props.coords.lat)
               //   console.log(point);
-            this._map.centerAndZoom(point, 17); // 初始化地图，设置中心点坐标和地图级别
+            this._map.centerAndZoom(point, 17); // 初始化地图，设置中心点坐标和地图级别 (init map, setting Zoom)
             this._map.addControl(new BMap.NavigationControl());
             this._map.addControl(new BMap.ScaleControl());
             this._map.addControl(new BMap.OverviewMapControl());
             this._map.addControl(new BMap.MapTypeControl());
-            this._map.setCurrentCity('北京'); // 仅当设置城市信息时，MapTypeControl的切换功能才能可用
+            this._map.setCurrentCity('北京'); // 仅当设置城市信息时，MapTypeControl的切换功能才能可用 (setting city)
+            //note that the LocalSearch provided my Baidu only provides search result close to current city
 
             //add marker to Map
             var marker = new BMap.Marker(point);
             this._map.addOverlay(marker);
             marker.enableDragging();
             marker.addEventListener('dragend', function(e) {
-              //calling redux action here
+
+              //calling redux action here, this.props is linked to actions.selectPoint (see mapStateToProps function below)
               this.props.selectPoint(e.point);
     						console.log("draged to");
     						console.log(marker.point);
-    						this._map.panTo(e.point);
+    						this._map.panTo(e.point); //pan Map so that Marker is at the middle
             }.bind(this));
 
 
@@ -49,7 +51,6 @@ class BDMap extends Component {
                             var firstPoi = results.getPoi(0).point;
                             var markerAnchor = new BMap.Point(firstPoi.lng, firstPoi.lat);
                             marker.setPosition(markerAnchor);
-                          //  console.log("searched ",searchText);
                             console.log(marker.point);
                             this._map.panTo(marker.point);
                             this.props.selectPoint(marker.point);
@@ -58,14 +59,14 @@ class BDMap extends Component {
                 }.bind(this)
             };
         this._local = new BMap.LocalSearch(this._map, options);
+        //note that the LocalSearch provided my Baidu only provides search result close to current city
         }
 
 
         //custom function to connect with baidumap serach component
+        //seach is a function provided my BaiduMap, thats why we can only call it this way
         _handleChange(evt) {
-
             this._local.search(evt.target.value);
-
         }
 
     render(){
@@ -97,7 +98,7 @@ function mapStateToProps(state) {
 
 //binding select point function to actions
 function matchDispatchToProps(dispatch){
-return bindActionCreators({selectPoint: selectPoint}, dispatch);
+  return bindActionCreators({selectPoint: selectPoint}, dispatch);
 }
 
 

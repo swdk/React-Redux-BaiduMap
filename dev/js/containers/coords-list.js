@@ -26,10 +26,5 @@ function mapStateToProps(state) {
     };
 }
 
-//binding select point function to actions
-function matchDispatchToProps(dispatch){
-    return bindActionCreators({selectPoint: selectPoint}, dispatch);
-}
 
-
-export default connect(mapStateToProps, matchDispatchToProps)(CoordList);
+export default connect(mapStateToProps)(CoordList);
