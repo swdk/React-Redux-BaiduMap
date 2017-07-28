@@ -2,8 +2,8 @@
 
 # React/Sass/Redux Boilerplate
 
-Boilerplate and guide for a React/Sass/Redux build.
-Credit to Bucky Roberts for providing the Boilerplate
+Boilerplate and guide for a React/Sass/Redux build. <br/>
+Credits to Bucky Roberts for providing this awesome Boilerplate
 https://github.com/buckyroberts
 
 ## Getting Started
